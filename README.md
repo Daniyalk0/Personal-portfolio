@@ -52,7 +52,7 @@ The core of this portfolio is the **AI Assistant**. Unlike standard chatbots, th
 
 ### 1. Clone the repository
 ```bash
-git clone https://github.com/Daniyalk0/portfolio.git
+git clone https://github.com/Daniyalk0/Personal-portfolio.git
 cd portfolio
 
 ```
