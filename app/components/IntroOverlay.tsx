@@ -2,7 +2,7 @@
 import React from 'react'
 import { useIntro } from '../context/IntroContext';
 import { AnimatePresence, motion } from 'motion/react';
-import { DiaTextReveal } from '@/components/ui/dia-text-reveal';
+import { DiaTextReveal } from '@/app/components/ui/dia-text-reveal';
 import { customColors, textStyles } from './Hero';
 
 const IntroOverlay = () => {
@@ -36,7 +36,7 @@ const IntroOverlay = () => {
                     <br />
                     <span className="italic opacity-80">
                       <DiaTextReveal
-                        className="inline-block whitespace-nowrap text-[#393025] dark:text-[#f9ebdc]"
+                        className="inline-block whitespace-nowrap text-[#393025] dark:text-[#f9ebdc] pb-2"
                         colors={customColors}
                         text="Timeless Design."
                         delay={0.6}

@@ -5,7 +5,7 @@ import { motion, AnimatePresence, useScroll, useTransform } from "motion/react";
 import { Moon, Sun, Circle } from "lucide-react";
 import Link from "next/link";
 import { ThemeToggle } from "./ThemeToggle";
-import { MorphingText } from "@/components/ui/morphing-text";
+import { MorphingText } from "@/app/components/ui/morphing-text";
 
 // --- Types ---
 interface NavItem {

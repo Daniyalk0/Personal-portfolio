@@ -12,8 +12,8 @@ import Image from "next/image";
 import { Project, PROJECTS } from "./ProjectsData";
 import { GrainOverlay } from "./Hero";
 import Link from "next/link";
-import { MaskedReveal } from "@/components/ui/Masked-reveal";
-import { TextReveal } from "@/components/ui/Text-reveal";
+import { MaskedReveal } from "@/app/components/ui/Masked-reveal";
+import { TextReveal } from "@/app/components/ui/Text-reveal";
 // import { Project, PROJECTS } from "./projects-data";
 
 export default function SelectedWork() {

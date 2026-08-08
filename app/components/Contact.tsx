@@ -3,8 +3,8 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { ArrowUpRight, Copy, Check, MapPin, Mail } from "lucide-react";
-import { MaskedReveal } from "@/components/ui/Masked-reveal";
-import { TextReveal } from "@/components/ui/Text-reveal";
+import { MaskedReveal } from "@/app/components/ui/Masked-reveal";
+import { TextReveal } from "@/app/components/ui/Text-reveal";
 
 /**
  * UTILS & CONSTANTS

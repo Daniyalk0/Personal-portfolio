@@ -128,7 +128,7 @@ export function DiaTextReveal({
   text,
   colors = DEFAULT_COLORS,
   textColor = "var(--foreground)",
-  duration = 1.5,
+  duration = 1.2,
   delay = 0,
   repeat = false,
   repeatDelay = 0.5,

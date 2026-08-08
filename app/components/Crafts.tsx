@@ -3,8 +3,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence, useInView } from 'motion/react';
 import { Sparkle } from 'lucide-react';
-import { MaskedReveal } from '@/components/ui/Masked-reveal';
-import { TextReveal } from '@/components/ui/Text-reveal';
+import { MaskedReveal } from '@/app/components/ui/Masked-reveal';
+import { TextReveal } from '@/app/components/ui/Text-reveal';
 
 // --- Types ---
 

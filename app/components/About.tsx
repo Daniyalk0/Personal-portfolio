@@ -9,8 +9,8 @@ import {
   useInView,
   useReducedMotion,
 } from "motion/react";
-import { MaskedReveal } from "@/components/ui/Masked-reveal";
-import { TextReveal } from "@/components/ui/Text-reveal";
+import { MaskedReveal } from "@/app/components/ui/Masked-reveal";
+import { TextReveal } from "@/app/components/ui/Text-reveal";
 
 // --- Types ---
 
@@ -111,38 +111,51 @@ const PaperFragment = ({ item }: { item: Fragment }) => {
         hover:shadow-[0_20px_50px_-10px_rgba(0,0,0,0.4)]
         transition-shadow duration-300 ${sizeClasses[item.size]}`}
       // Card movement: SNAPPY
-initial={{ 
-  opacity: 0, 
-  y: 80, 
-  scale: 0.85, 
-  rotate: item.rotation + 12, // Start with a more exaggerated tilt
-  filter: "blur(10px)", // Starts out of focus
+initial={{
+  opacity: 0,
+  y: 80,
+  scale: 0.85,
+  rotate: item.rotation + 12,
+  filter: "blur(10px)",
 }}
-whileInView={{ 
-  opacity: 1, 
-  y: 0, 
+whileInView={{
+  opacity: 1,
+  y: 0,
   scale: 1,
-  rotate: item.rotation, // Settles into the intended tilt
-  filter: "blur(0px)", // Focuses as it lands
+  rotate: item.rotation,
+  filter: "blur(0px)",
 }}
-viewport={{ once: true, margin: "-50px" }} // Trigger slightly before it hits the center
+viewport={{
+  once: true,
+  margin: "-50px",
+}}
 transition={{
   type: "spring",
-  stiffness: 30, // Slow, heavy, and premium feel
-  damping: 15,
-  mass: 0.8,
-  // Smooth out the opacity and blur specifically
-  opacity: { duration: 1 },
-  filter: { duration: 1 }
+  stiffness: 80,
+  damping: 18,
+  mass: 0.6,
+
+  opacity: {
+    duration: 0.4,
+  },
+  filter: {
+    duration: 0.4,
+  },
 }}
 whileHover={{
   rotate: 0,
   scale: 1.05,
-  y: -10, // Physical lift
+  y: -10,
   zIndex: 50,
-  transition: { type: "spring", stiffness: 200, damping: 20 },
+  transition: {
+    type: "spring",
+    stiffness: 200,
+    damping: 20,
+  },
 }}
-whileTap={{ scale: 0.98 }} // Slight press effect on click
+whileTap={{
+  scale: 0.98,
+}}
     >
       {/* Visual Detail: Matte Washi Tape */}
       <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-16 h-8 bg-white/30 dark:bg-zinc-800/30 backdrop-blur-md border border-white/20 rotate-1 group-hover:-translate-y-1 transition-transform duration-300" />

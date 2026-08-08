@@ -6,6 +6,7 @@ import { ThemeProvider } from "./components/Theme-provider";
 import { VintageAssistant } from "./components/chat/ChatConcierge";
 import { IntroProvider } from "./context/IntroContext";
 import IntroOverlay from "./components/IntroOverlay";
+import SmoothScroll from "./components/Providers/SmoothScroll";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -41,7 +42,10 @@ return (
           <Navbar />
 
           <main className="flex-1">
+            <SmoothScroll>
+
             {children}
+            </SmoothScroll>
             <IntroOverlay/>
              {/* <VintageAssistant variant="mobile-persistent" /> */}
           </main>

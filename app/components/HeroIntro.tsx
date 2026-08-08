@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { DiaTextReveal } from "@/components/ui/dia-text-reveal";
+import { DiaTextReveal } from "@/app/components/ui/dia-text-reveal";
 // import { DiaTextReveal } from "@/registry/magicui/dia-text-reveal";
 
 export function ModernHeroIntro() {

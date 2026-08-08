@@ -12,9 +12,10 @@ import Link from "next/link";
 import { ChatButton } from "./chat/ChatButton";
 import { VintageAssistant } from "./chat/ChatConcierge";
 import { useIntro } from "../context/IntroContext";
-import { MaskedReveal } from "@/components/ui/Masked-reveal";
-import { TextReveal } from "@/components/ui/Text-reveal";
-import { RippleButton } from "@/components/ui/ripple-button";
+import { MaskedReveal } from "@/app/components/ui/Masked-reveal";
+import { TextReveal } from "@/app/components/ui/Text-reveal";
+import { RippleButton } from "@/app/components/ui/ripple-button";
+import { UseIsMobile } from "../hooks/UseMediaQuery";
 
 // --- Types ---
 interface EditorialButtonProps {
@@ -138,6 +139,8 @@ export const textStyles =
   "text-[clamp(2.5rem,8vw,5.5rem)] leading-[1.05] font-serif tracking-tight ";
 
 export default function HeroSection() {
+const isMobile = UseIsMobile()
+
   const fadeInUp = {
     initial: { opacity: 0, y: 15 },
     animate: { opacity: 1, y: 0 },
@@ -346,7 +349,7 @@ export default function HeroSection() {
             <motion.div variants={fadeInUp} className="relative py-5 lg:py-10">
               {/* Original Top Label */}
               <TextReveal
-                delay={2.1}
+                delay={isMobile ? 0 : 2.1}
                 className="text-[10px] font-bold text-[#82786e] uppercase tracking-widest block mb-6"
                 text="01 — Featured Project"
               />
@@ -356,7 +359,7 @@ export default function HeroSection() {
 
               <div className="space-y-6">
                 {/* Title using MaskedReveal */}
-                <MaskedReveal delay={2.1} duration={1.2} direction="up">
+                <MaskedReveal  delay={isMobile ? 0 : 2.1} duration={1.2} direction="up">
                   <h2 className="text-4xl md:text-6xl font-serif tracking-tight text-[#2a231b] dark:text-[#d6caba]">
                     Greenova
                   </h2>
@@ -364,10 +367,10 @@ export default function HeroSection() {
 
                 {/* Subtitle using TextReveal */}
                 <TextReveal
-                  delay={2.1}
-                  className="text-sm font-medium text-[#82786e] uppercase tracking-tighter"
-                  text="Full-Stack E-Commerce Platform"
-                />
+  delay={isMobile ? 0 : 2.1}
+  className="text-sm font-medium text-[#82786e] uppercase tracking-tighter"
+  text="Full-Stack E-Commerce Platform"
+/>
 
                 {/* The "Letter" Feature Box */}
                 <motion.div
@@ -400,7 +403,10 @@ export default function HeroSection() {
                         key={item}
                         initial={{ opacity: 0, x: -5 }}
                         whileInView={{ opacity: 1, x: 0 }}
-                        transition={{ delay: 2.1 + index * 0.1 }}
+                       transition={{
+        delay: isMobile ? 0 : 2.1 + index * 0.1,
+        duration: 0.4,
+      }}
                         viewport={{ once: true }}
                         className="flex items-center gap-3 text-xs text-[#60584e] dark:text-[#aca296] italic font-serif"
                       >
