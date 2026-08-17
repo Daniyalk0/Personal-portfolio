@@ -3,7 +3,7 @@
 [![Next.js](https://img.shields.io/badge/Next.js-15-black?style=flat-square&logo=next.js)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=flat-square&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=flat-square&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
-[![Groq AI](https://img.shields.io/badge/AI-Groq%20Llama%203.1-orange?style=flat-square)](https://groq.com/)
+[![Gemini Flash](https://img.shields.io/badge/AI-Gemini%20Flash-4285F4?style=flat-square&logo=google&logoColor=white)](https://aistudio.google.com/)
 
 A high-performance, editorial-inspired portfolio built with **Next.js 15** (App Router). This project showcases my journey as a Full-Stack Developer, featuring smooth Framer Motion interactions and an intelligent AI assistant that knows everything about my professional background.
 
@@ -15,7 +15,7 @@ A high-performance, editorial-inspired portfolio built with **Next.js 15** (App 
 
 ## ✨ Key Features
 
-*   **🤖 AI Portfolio Assistant:** A custom chatbot powered by **Llama 3.1** via Groq Cloud. It uses a Markdown-based knowledge base to answer visitor queries in real-time.
+*   **🤖 AI Portfolio Assistant:** A custom chatbot powered by **Google Gemini Flash**. It uses a Markdown-based knowledge base to answer visitor queries in real-time.
 *   **⚡ Next.js 15 Optimized:** Leveraging the latest React 19 features, Server Components, and optimized hydration.
 *   **🎨 Editorial Design:** A clean, typography-focused aesthetic with seamless Dark/Light mode support.
 *   **📱 Fully Responsive:** Crafted for all screen sizes, from mobile devices to ultra-wide monitors.
@@ -30,7 +30,8 @@ The core of this portfolio is the **AI Assistant**. Unlike standard chatbots, th
 
 1.  **Knowledge Base:** My CV and project details are stored in a structured `data/knowledge-base.md`.
 2.  **Context Injection:** When a user asks a question, the system reads this context and injects it into the LLM prompt.
-3.  **Streaming UI:** Responses are streamed back to the client word-by-word using Vercel AI SDK patterns for a fluid user experience.
+3.  **Streaming UI:** Responses are streamed back to the client word-by-word using the official Google GenAI SDK (ai.models.generateContentStream) and custom ReadableStream patterns for a fluid user experience.  
+
 4.  **Grounding:** The system is strictly instructed to only answer based on the provided bio to prevent hallucinations.
 
 ---
@@ -43,7 +44,7 @@ The core of this portfolio is the **AI Assistant**. Unlike standard chatbots, th
 | **Language**       | TypeScript                                                                      |
 | **Styling**        | Tailwind CSS                                                                    |
 | **Animations**     | Framer Motion                                                                   |
-| **AI Infrastructure**| Groq API (Llama 3.1 70B), React Markdown                                      |
+| **AI Infrastructure**| Google Gemini Flash (via Google AI Studio), React Markdown                                      |
 | **Content**        | Gray-matter (Frontmatter parsing), Markdown                                     |
 
 ---
@@ -65,7 +66,7 @@ pnpm install
 ```
 ### 3.Environment Variables
 ```bash
-GROQ_API_KEY=your_groq_api_key_here
+GEMINI_API_KEY=your_gemini_api_key_here
 
 ```
 ### 4. Run the development server

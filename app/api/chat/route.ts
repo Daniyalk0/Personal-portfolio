@@ -1,11 +1,13 @@
-import Groq from "groq-sdk";
+import { GoogleGenAI } from "@google/genai";
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 import { projectAliases } from "@/app/lib/ai/projectAliases";
 
-const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
-
+// Initialize the client (automatically looks for GEMINI_API_KEY in your environment variables)
+const ai = new GoogleGenAI({ 
+  apiKey: process.env.GEMINI_API_KEY 
+});
 function getFiles(dir: string): string[] {
   let results: string[] = [];
   if (!fs.existsSync(dir)) return results;
@@ -22,15 +24,20 @@ export async function POST(req: Request) {
   try {
     const { messages } = await req.json();
 
-const groqMessages = messages.map(
-  ({ role, content }: { role: string; content: string }) => ({
-    role,
-    content,
-  })
-);
-    const lastUserQuery = groqMessages[groqMessages.length - 1].content.toLowerCase();
+    // Map messages to Gemini's expected format (OpenAI's 'assistant' becomes 'model')
+    const geminiMessages = messages.map(
+      ({ role, content }: { role: string; content: string }) => ({
+        role: role === "assistant" ? "model" : "user",
+        parts: [{ text: content }],
+      })
+    );
+
     // Maintain context from the last few messages
-    const chatHistory = groqMessages.slice(-3).map((m: any) => m.content).join(" ").toLowerCase();
+    const chatHistory = geminiMessages
+      .slice(-3)
+      .map((m: any) => m.parts[0].text)
+      .join(" ")
+      .toLowerCase();
 
     const contentDir = path.join(process.cwd(), "app", "content");
     const allFiles = getFiles(contentDir);
@@ -42,16 +49,16 @@ const groqMessages = messages.map(
       const { data, content } = matter(fs.readFileSync(filePath, "utf8"));
       const title = (data.title || "").toLowerCase();
       const slug = path.basename(filePath, ".md").toLowerCase();
-      projectNames.push(data.title);
+      if (data.title) projectNames.push(data.title);
 
       // Check if the current conversation is about this project
-   const aliases = projectAliases[title] ?? [title, slug];
+      const aliases = projectAliases[title] ?? [title, slug];
 
-const matched = aliases.some((alias) =>
-  chatHistory.includes(alias.toLowerCase())
-);
+      const matched = aliases.some((alias) =>
+        chatHistory.includes(alias.toLowerCase())
+      );
 
-if (matched) {
+      if (matched) {
         contextParts.push(`
 PROJECT: ${data.title}
 METADATA: ${data.description}
@@ -78,19 +85,22 @@ STRICT RULES:
 CONTEXT:
 ${context}
 `;
-console.log(messages);
+    console.log(messages);
 
-    const stream = await groq.chat.completions.create({
-      messages: [{ role: "system", content: systemPrompt }, ...groqMessages],
-      model: "llama-3.1-8b-instant",
-      temperature: 0.2, // Keep it low for strict rule following
-      stream: true,
+    // Stream generation using Gemini Flash
+    const streamResponse = await ai.models.generateContentStream({
+     model: "gemini-3.5-flash-lite",
+      contents: geminiMessages,
+      config: {
+        systemInstruction: systemPrompt,
+        temperature: 0.2, // Keep it low for strict rule-following
+      },
     });
 
     const responseStream = new ReadableStream({
       async start(controller) {
-        for await (const chunk of stream) {
-          controller.enqueue(new TextEncoder().encode(chunk.choices[0]?.delta?.content || ""));
+        for await (const chunk of streamResponse) {
+          controller.enqueue(new TextEncoder().encode(chunk.text || ""));
         }
         controller.close();
       },
@@ -101,16 +111,16 @@ console.log(messages);
     });
 
   } catch (error: any) {
-  console.error(error);
+    console.error(error);
 
-  return Response.json(
-    {
-      code: error.status ?? 500,
-      message: error.message,
-    },
-    {
-      status: error.status ?? 500,
-    }
-  );
-}
+    return Response.json(
+      {
+        code: error.status ?? 500,
+        message: error.message,
+      },
+      {
+        status: error.status ?? 500,
+      }
+    );
+  }
 }
