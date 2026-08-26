@@ -60,7 +60,7 @@ const EditorialButton = ({
 }: EditorialButtonProps) => {
   const href = secondary
     ? "mailto:getdaniyalkhan@gmail.com"
-    : "/Daniyal_CV.pdf";
+    : "/Daniyal's_CV.pdf";
 
   const content = (
     <motion.span
