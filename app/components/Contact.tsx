@@ -54,75 +54,214 @@ const ContactItem = ({
   const handleCopy = async () => {
     await navigator.clipboard.writeText(value);
     setCopied(true);
-    setTimeout(() => setCopied(false), 3000);
+
+    setTimeout(() => {
+      setCopied(false);
+    }, 3000);
   };
 
-  const Content = (
-    <div className="group relative flex items-center justify-between py-6 border-b border-stone-200 dark:border-stone-800 transition-colors duration-500">
-      <div className="flex flex-col gap-1">
-        <span className="text-[10px] uppercase tracking-[0.2em] text-stone-400 dark:text-stone-500 font-medium">
+  const Action = () => {
+    if (isCopyable) {
+      return (
+        <button
+          type="button"
+          onClick={handleCopy}
+          aria-label={`Copy ${label}`}
+          className="
+            group/action
+            relative
+            flex
+            h-10
+            min-w-10
+            items-center
+            justify-center
+            overflow-hidden
+            border-l
+            border-black/15
+            pl-5
+            sm:h-12
+            sm:min-w-12
+            sm:pl-7
+          "
+        >
+          <AnimatePresence mode="wait" initial={false}>
+            {copied ? (
+              <motion.span
+                key="copied"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                className="
+                  font-mono
+                  text-[8px]
+                  uppercase
+                  tracking-[0.15em]
+                  text-[#e53935]
+                "
+              >
+                Copied
+              </motion.span>
+            ) : (
+              <motion.div
+                key="copy"
+                initial={{ opacity: 0, rotate: -20 }}
+                animate={{ opacity: 1, rotate: 0 }}
+                exit={{ opacity: 0, rotate: 20 }}
+                className="
+                  relative
+                  flex
+                  h-7
+                  w-7
+                  items-center
+                  justify-center
+                  border
+                  border-black/20
+                  transition-all
+                  duration-300
+                  group-hover/action:border-[#e53935]
+                  group-hover/action:bg-[#e53935]
+                "
+              >
+                <Copy
+                  className="
+                    h-3
+                    w-3
+                    transition-colors
+                    duration-300
+                    group-hover/action:text-white
+                  "
+                />
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </button>
+      );
+    }
+
+    if (!href) return null;
+
+    return (
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={`Open ${label}`}
+        className="
+          group/action
+          relative
+          flex
+          h-10
+          min-w-10
+          items-center
+          justify-center
+          overflow-hidden
+          border-l
+          border-black/15
+          pl-5
+          sm:h-12
+          sm:min-w-12
+          sm:pl-7
+        "
+      >
+        <span
+          className="
+            absolute
+            right-0
+            h-8
+            w-8
+            bg-[#e53935]
+            opacity-0
+            transition-all
+            duration-300
+            group-hover/action:opacity-100
+          "
+        />
+
+        <ArrowUpRight
+          className="
+            relative
+            z-10
+            h-5
+            w-5
+            stroke-[1.5]
+            transition-all
+            duration-500
+            group-hover/action:translate-x-1
+            group-hover/action:-translate-y-1
+            group-hover/action:text-white
+          "
+        />
+      </a>
+    );
+  };
+
+  return (
+    <div
+      className="
+        group
+        relative
+        flex
+        items-center
+        justify-between
+        border-b
+        border-black/10
+        py-5
+        transition-colors
+        duration-500
+        hover:bg-white/20
+        sm:py-6
+      "
+    >
+      <div className="flex min-w-0 flex-col gap-1">
+        <span
+          className="
+            font-mono
+            text-[8px]
+            uppercase
+            tracking-[0.22em]
+            text-black/35
+          "
+        >
           {label}
         </span>
-        <span className="text-md md:text-xl font-serif text-stone-800 dark:text-stone-200 group-hover:translate-x-2 transition-transform duration-500 ease-out flex items-center gap-2">
-          <span className="hidden sm:block opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-stone-400">
-            ✦
+
+        <span
+          className="
+            flex
+            items-center
+            gap-2
+            break-all
+            text-base
+            font-serif
+            text-black/80
+            transition-transform
+            duration-500
+            ease-out
+            group-hover:translate-x-2
+            sm:text-xl
+          "
+        >
+          <span
+            className="
+              text-[#e53935]
+              opacity-0
+              transition-opacity
+              duration-300
+              group-hover:opacity-100
+            "
+          >
+            /
           </span>
+
           {value}
         </span>
       </div>
 
-      {isCopyable ? (
-        <button
-          onClick={handleCopy}
-          className="relative cursor-pointer
-           flex items-center justify-center mt-5 w-7 h-7 sm:w-10 sm:h-10 rounded-full border-none sm:border border-stone-200 dark:border-stone-800 hover:bg-stone-100 dark:hover:bg-stone-900 transition-all duration-300"
-          aria-label="Copy email"
-        >
-          <div className="relative w-3 h-3 sm:w-4 sm:h-4">
-            <AnimatePresence mode="wait" initial={false}>
-              {copied ? (
-                <motion.div
-                  key="check"
-                  initial={{ opacity: 0, scale: 0.6 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.6 }}
-                  transition={{ duration: 0.1 }}
-                  className="absolute inset-0 flex items-center justify-center"
-                >
-                  <Check className="w-4 h-4 text-stone-400" />
-                </motion.div>
-              ) : (
-                <motion.div
-                  key="copy"
-                  initial={{ opacity: 0, scale: 0.6 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.6 }}
-                  transition={{ duration: 0.1 }}
-                  className="absolute inset-0 flex items-center justify-center"
-                >
-                  <Copy className="w-4 h-4 text-stone-400" />
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
-        </button>
-      ) : (
-        href && (
-          <a
-            href={href}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-7 h-7 mt-4 sm:w-10 sm:h-10 flex items-center justify-center rounded-full border border-stone-200 dark:border-stone-800 hover:bg-stone-100 dark:hover:bg-stone-900 transition-all duration-300"
-          >
-            <ArrowUpRight className="w-3 h-3 sm:w-4 sm:h-4 text-stone-400" />
-          </a>
-        )
-      )}
+      <Action />
     </div>
   );
-
-  return Content;
 };
+
 
 export default function Contact() {
   return (
@@ -238,8 +377,8 @@ export default function Contact() {
         </div>
       </div>
 
-      {/* FOOTER INTEGRATION */}
-      <footer className="w-full px-6 py-6 border-t border-stone-200 dark:border-stone-800">
+      FOOTER INTEGRATION
+      {/* <footer className="w-full px-6 py-6 border-t border-stone-200 dark:border-stone-800">
         <div className="container mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
           <div className="flex flex-col items-center md:items-start gap-2">
             <span className="text-xs tracking-[0.3em] uppercase text-[#887d6e] dark:text-[#6e6459] font-medium">
@@ -256,11 +395,11 @@ export default function Contact() {
             <span className="text-xs text-[#b5a287] dark:text-[#6c6256]">
               Designed & Developed by Me.
             </span>
-            {/* Minimalist Signature Line */}
+      
             <div className="w-24 h-px bg-stone-300 dark:bg-stone-700 mt-2 opacity-50" />
           </div>
         </div>
-      </footer>
+      </footer> */}
     </section>
   );
 }

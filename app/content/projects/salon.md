@@ -1,54 +1,79 @@
 ---
-title: Salon Template
-description: Premium Responsive Website Template for Salons and Small Businesses
+
+title: SprintFlow
+
+description: Frontend Sprint Management Dashboard with Kanban Workflows, Authentication, Analytics, and Notifications
+
 actions:
-  - type: live
-    label: Live Demo
-    url: https://YOUR-LIVE-URL.com
-  - type: github
-    label: GitHub
-    url: https://github.com/Daniyalk0/salon-template
+
+* type: live
+
+  label: Live Demo
+
+  url: https://sprintfloww.vercel.app/
+
+* type: github
+
+  label: GitHub
+
+  url: https://github.com/Daniyalk0/Sprintflow
+
 ---
 
-# Salon Template
+# SprintFlow
 
-Salon Template is a modern, responsive business website built by Daniyal for salons, spas, barbershops, and other small businesses. Designed with a premium aesthetic and smooth user interactions, it helps businesses establish a professional online presence while showcasing their services, team, pricing, and contact information.
+SprintFlow is a frontend-only sprint management dashboard built by Daniyal with React, TypeScript, and Vite. It simulates a modern project management workflow with authentication, sprint and task management, Kanban workflows, drag-and-drop interactions, analytics, notifications, and persistent mock backend operations.
 
 ## Tech Stack
 
-- Next.js 15 (App Router)
-- React
-- TypeScript
-- Tailwind CSS
-- Framer Motion
+* React
+* TypeScript
+* Vite
+* React Router
+* TanStack Query
+* Zustand
+* Tailwind CSS
+* @dnd-kit
+* Recharts
+* Vitest
+* React Testing Library
 
 ## Highlights
 
-- Modern and premium landing page design
-- Fully responsive layout optimized for all screen sizes
-- Smooth animations and micro-interactions using Framer Motion
-- Service showcase with visually engaging layouts
-- Pricing section with clear service packages
-- Team and testimonial sections for building customer trust
-- Contact section with business information and call-to-action
-- SEO-friendly structure for improved discoverability
-- Clean, reusable component architecture for easy customization
-- Fast loading performance with optimized assets
+* Authentication using DummyJSON
+* Protected routes with session persistence
+* Access and refresh token handling with automatic refresh and retry
+* Dashboard with sprint and task overview
+* Kanban board with Backlog, In Progress, Review, and Done states
+* Drag-and-drop task management using `@dnd-kit`
+* Task creation, editing, deletion, reordering, and comments
+* `localStorage` persistence for simulated backend operations
+* Analytics dashboard powered by Recharts
+* Notification polling using TanStack Query
+* Zustand-based global state management
+* Responsive UI built with Tailwind CSS
+* Route-level code splitting using `React.lazy` and `Suspense`
 
 ## Engineering Challenges
 
-- Designed reusable UI components that can be easily adapted for different business niches.
-- Balanced visual appeal with performance to create smooth animations without affecting page speed.
-- Built a scalable layout that allows sections to be added, removed, or customized with minimal code changes.
-- Focused on responsive design to ensure a consistent experience across desktop, tablet, and mobile devices.
+* Implemented authentication flows including access/refresh token handling and automatic retry logic.
+* Designed a Kanban workflow with drag-and-drop task movement and reordering.
+* Combined Zustand and TanStack Query for client-side state and server-like data management.
+* Simulated backend persistence using `localStorage` while keeping the application architecture scalable.
+* Built reusable components and protected routes for a multi-page dashboard experience.
+* Added polling-based notifications and asynchronous data handling using TanStack Query.
+* Maintained a responsive interface across desktop, tablet, and mobile screen sizes.
 
 ## What I Learned
 
-- Designing conversion-focused landing pages for local businesses
-- Creating reusable UI systems with Next.js and Tailwind CSS
-- Implementing polished animations with Framer Motion
-- Optimizing static websites for performance and SEO
-- Building maintainable frontend architectures for business websites
+* Building scalable React applications with TypeScript
+* Managing complex client state with Zustand
+* Handling asynchronous server-like state with TanStack Query
+* Implementing authentication and token refresh flows
+* Building interactive drag-and-drop interfaces
+* Designing reusable dashboard and Kanban components
+* Implementing route-level code splitting with React.lazy and Suspense
+* Writing component and UI tests with Vitest and React Testing Library
 
 ## Local Development
 
@@ -56,15 +81,15 @@ Salon Template is a modern, responsive business website built by Daniyal for sal
 
 Make sure you have the following installed:
 
-- Git
-- Node.js
-- npm
+* Git
+* Node.js
+* npm
 
 ### Clone the Repository
 
 ```bash
-git clone https://github.com/Daniyalk0/salon-template
-cd salon-template
+git clone https://github.com/Daniyalk0/Sprintflow
+cd sprintflow
 ```
 
 ### Install Dependencies

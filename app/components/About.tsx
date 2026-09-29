@@ -209,134 +209,168 @@ export default function AboutSection() {
     <section
       ref={containerRef}
       id="about"
-      className="relative min-h-screen w-full py-24 overflow-hidden transition-colors duration-700"
+      className="
+        relative w-full
+        overflow-hidden
+        bg-[#f5f3ee]
+        py-10
+        text-[#111]
+        md:pb-16
+        md:py-0
+        md:pt-6
+      "
     >
-      {/* Background Texture Overlay */}
-      {/* <div className="absolute inset-0 pointer-events-none opacity-[0.4] dark:opacity-[0.1] bg-[url('https://www.transparenttextures.com/patterns/paper-fibers.png')]" /> */}
+      <div className="relative z-10 mx-auto max-w-[1600px] px-6 lg:px-10">
 
-      <div className="container mx-auto px-6 lg:px-10 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
-          {/* Left Column: Narrative */}
-          <div className="lg:col-span-5 space-y-12 group">
+        {/* Header */}
+        <header className="mb-12 border-b border-black/15 pb-5 md:mb-16">
+          <div className="flex items-center justify-between">
+            <span className="text-[10px] font-mono uppercase tracking-[0.25em] text-black/50">
+              02 / About
+            </span>
+
+            <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-black/40">
+              2026
+            </span>
+          </div>
+        </header>
+
+
+        {/* Main Grid */}
+        <div className="grid grid-cols-1 border-l border-black/10 lg:grid-cols-12">
+
+          {/* Heading */}
+          <div className="border-b border-black/10 px-4 pb-12 lg:col-span-4 lg:border-b-0 lg:border-r lg:px-8">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 0.8 }}
             >
-              <div className="flex flex-col items-end justify-end mb-4">
-                <h2 className="text-xs sm:text-sm font-sans font-semibold tracking-[0.3em] uppercase text-[#82786e] mb-2">
-                  The person behind the code
-                </h2>
-                <div className="h-[1px] w-20 bg-zinc-300 dark:bg-zinc-800 mt-1 group-hover:w-full transition-all duration-500" />
-              </div>
-              <MaskedReveal delay={0.4} duration={1.5} direction="up">
-                <h3 className="text-5xl md:text-7xl font-serif italic tracking-tight text-[#393025] dark:text-[#f9ebdc] ">
+              <p className="mb-6 text-[10px] font-mono uppercase tracking-[0.2em] text-[#e53935]">
+                The person behind the code
+              </p>
+
+              <MaskedReveal
+                delay={0.3}
+                duration={1.2}
+                direction="up"
+              >
+                <h2
+                  className="
+                    text-7xl
+                    font-semibold
+                    uppercase
+                    leading-[0.8]
+                    tracking-[-0.07em]
+                    md:text-8xl
+                  "
+                >
                   About
-                </h3>
+                  <br />
+                  <span className="text-[#e53935]">Me.</span>
+                </h2>
               </MaskedReveal>
             </motion.div>
-
-            <div
-              className="space-y-8 text-zinc-600 dark:text-zinc-400 leading-relaxed font-sans"
-              // initial={{ opacity: 0, y: 20 }}
-              // animate={isInView ? { opacity: 1, y: 0 } : {}}
-              // transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            >
-              <MaskedReveal delay={0.7} duration={1.3} direction="up">
-                <p className="text-lg md:text-xl font-serif italic text-[#393025] dark:text-[#f9ebdc] ">
-                  Building digital experiences that feel as intentional as a
-                  well-bound book.
-                </p>
-              </MaskedReveal>
-
-            <div className="space-y-6 max-w-md text-[#716350] dark:text-[#9f9080] leading-tight">
-<div className="space-y-6 max-w-md text-[#716350] dark:text-[#9f9080] leading-tight">
-  <TextReveal
-    text="I didn't choose software because it was the obvious path—I chose it because I fell in love with creating things from nothing. Every project teaches me something new, and that's what keeps me building."
-    highlight="creating building"
-    highlightClass="dark:text-[#aa957a] text-[#544839] border-b border-[#aa957a] dark:border-[#544839]  font-medium"
-  />
-
-  <TextReveal
-    delay={0.2}
-    text="I enjoy crafting experiences that are both functional and memorable. From polished interfaces and thoughtful animations to clean architecture, I believe the smallest details often make the biggest difference."
-    highlight="functional memorable architecture details"
-    highlightClass="dark:text-[#aa957a] text-[#544839] border-b border-[#aa957a] dark:border-[#544839]  font-medium"
-  />
-
-  <TextReveal
-    delay={0.4}
-    text="Today I'm expanding beyond the frontend by exploring backend engineering, AI, and scalable systems. Away from the keyboard, you'll usually find me playing cricket, travelling, or chasing great photographs."
-    highlight="backend AI scalable cricket photographs"
-    highlightClass="dark:text-[#aa957a] text-[#544839] border-b border-[#aa957a] dark:border-[#544839]  font-medium"
-  />
-</div>
-</div>
-            </div>
-
-            {/* Oversized Pull Quote */}
-        <div className="relative pt-2 md:pt-10">
-  {/* The Quote Mark - Animate separately so it doesn't get clipped */}
-  <motion.span
-    initial={{ opacity: 0, y: 10 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true }}
-    transition={{ duration: 1, delay: 0.5 }}
-    className="absolute -top-0 -left-8 text-8xl font-serif text-zinc-200 dark:text-zinc-800/50 select-none pointer-events-none"
-  >
-    “
-  </motion.span>
-
-  {/* The Quote Text */}
-  <blockquote className="relative z-10">
-    <TextReveal
-      text="Software should feel as carefully crafted as the experience it creates."
-      highlight="carefully crafted"
-      highlightClass="text-[#aa957a] dark:text-[#544839] "
-      className="text-3xl md:text-4xl font-serif italic leading-tight  text-[#393025] dark:text-[#f9ebdc] "
-      delay={0.2}
-    />
-  </blockquote>
-
-  {/* The Horizontal Line - Masked Reveal works great here */}
-  <MaskedReveal direction="right" delay={1} className="mt-8">
-    <div className="w-24 h-[1px] bg-zinc-200 dark:bg-zinc-800" />
-  </MaskedReveal>
-</div>
           </div>
 
-          {/* Right Column: Floating Paper Fragment Gallery */}
-          <div className="lg:col-span-7 relative h-[600px] md:h-[800px] mt-0 md:mt-10 lg:mt-0">
-            {/* Ambient Mouse-follow container would wrap this for the subtle reaction */}
-            <div className="relative w-full h-full">
-              {GALLERY_FRAGMENTS.map((item) => (
-                <PaperFragment key={item.id} item={item} />
-              ))}
 
-              {/* Decorative Text Elements */}
-              <motion.div
-                className="absolute bottom-10 right-0 text-right hidden md:block"
-                initial={{ opacity: 0 }}
-                animate={isInView ? { opacity: 1 } : {}}
-                transition={{ delay: 1 }}
-              >
-                <p className="text-[10px] font-mono tracking-widest text-zinc-300 dark:text-zinc-700 uppercase vertical-text transform rotate-180">
-                  Visual Journal // Collected Moments
-                </p>
-              </motion.div>
+          {/* Content */}
+          <div className="lg:col-span-8">
+
+            {/* Intro + Portrait */}
+            <div className="grid grid-cols-1 md:grid-cols-2">
+
+              {/* Text */}
+              <div className="flex flex-col justify-between border-b border-black/10 p-6 md:border-b-0 md:border-r md:p-10 lg:p-12">
+
+                <MaskedReveal
+                  delay={0.5}
+                  duration={1.2}
+                  direction="up"
+                >
+                  <p className="
+                    max-w-xl
+                    text-2xl
+                    font-serif
+                    italic
+                    leading-tight
+                    md:text-4xl
+                  ">
+                    Building digital experiences that feel as intentional as a
+                    well-bound book.
+                  </p>
+                </MaskedReveal>
+
+                <TextReveal
+                  text="I fell in love with creating things from nothing. I enjoy turning ideas into polished, functional products while continuously exploring frontend, backend, and AI."
+                  highlight="creating polished frontend backend AI"
+                  highlightClass="text-[#e53935] font-medium"
+                  className="
+                    mt-16
+                    max-w-md
+                    text-sm
+                    leading-relaxed
+                    text-black/55
+                  "
+                />
+
+              </div>
+
+
+              {/* Portrait */}
+              <div className="relative min-h-[420px]">
+
+                <Image
+                  src="/daniyal-portrait.png"
+                  alt="Daniyal"
+                  fill
+                  className="object-cover grayscale"
+                />
+
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+
+                <div className="absolute bottom-5 left-5">
+                  <span className="
+                    bg-[#e53935]
+                    px-2 py-1
+                    text-[8px]
+                    font-mono
+                    uppercase
+                    tracking-[0.2em]
+                    text-white
+                  ">
+                    Daniyal / Web Developer
+                  </span>
+                </div>
+
+              </div>
+
             </div>
+
+
+            {/* Quote */}
+            <div className="border-t border-black/10 p-6 md:p-10 lg:p-12">
+
+              <TextReveal
+                text="Software should feel as carefully crafted as the experience it creates."
+                highlight="carefully crafted"
+                highlightClass="text-[#e53935]"
+                className="
+                  max-w-4xl
+                  text-2xl
+                  font-serif
+                  italic
+                  leading-tight
+                  md:text-4xl
+                "
+              />
+
+            </div>
+
           </div>
         </div>
+
       </div>
-
-      {/* Decorative Section Divider */}
-      {/* <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-[#f5f5f3] dark:from-[#050505] to-transparent pointer-events-none" /> */}
-
-      <style jsx global>{`
-        .vertical-text {
-          writing-mode: vertical-rl;
-        }
-      `}</style>
     </section>
   );
 }

@@ -75,12 +75,12 @@ const useMorphingText = (texts: string[]) => {
 export const MorphingText = ({ texts, className }: { texts: string[], className?: string }) => {
   const { text1Ref, text2Ref } = useMorphingText(texts)
   return (
-    <div className={cn("relative inline-block", className)}>
+    <div className={cn("relative inline-block ", className)}>
       {/* 
          Note: We use 'invisible' on one span to "hold" the space 
          so the container has a width, preventing layout jumps.
       */}
-      <span className="invisible whitespace-nowrap">{texts[0]}</span>
+      <span className="invisible whitespace-nowrap ">{texts[0]}</span>
       
       <span
         ref={text1Ref}

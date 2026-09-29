@@ -1,23 +1,19 @@
-import React from 'react'
-import Hero from './components/Hero'
+
 import SelectedWork from './components/Projects'
 import AboutSection from './components/About'
 import CraftSection from './components/Crafts'
-import Contact from './components/Contact'
-import { VintageWrapper } from './components/VintageWrapper'
+import Hero2 from './components/hero/Hero2'
+import { AIAssistant} from './components/chat/AIAssistant'
+
 
 const page = () => {
   return (
     <>
-    <VintageWrapper>
-
-    <Hero/>
+    <Hero2/>
     <SelectedWork/>
     <AboutSection/>
     <CraftSection/>
-    <Contact/>
-    </VintageWrapper>
-    {/* <AIPage/> */}
+   <AIAssistant/>
     </>
   )
 }
