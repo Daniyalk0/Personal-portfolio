@@ -35,7 +35,7 @@ export default function Hero2() {
       <motion.div
         aria-hidden="true"
         style={{ y: backgroundY }}
-        className="absolute -inset-y-[20%] inset-x-0 -z-10 bg-gradient-to-br from-[#d32f2f] via-[#e53935] to-[#b71c1c]"
+        className="absolute -inset-y-[20%] inset-x-0 -z-10 bg-gradient-to-br from-[#d32f2f] via-[#e53935] to-[#b71c1c] max-md:transform-none!"
       >
         <div className="absolute top-0 right-0 h-[500px] w-[500px] rounded-full bg-white/10 blur-[120px]" />
       </motion.div>
@@ -84,9 +84,9 @@ export default function Hero2() {
         <HeroVisual />
       </motion.div> */}
  <Hero3DHint heroRef={heroRef} />
-      <div className="h-screen w-full">
-  <Hero3D />
-</div>
+      <div className="h-svh w-full md:h-screen">
+        <Hero3D />
+      </div>
 
       <motion.div
         style={{ y: contentY }}
