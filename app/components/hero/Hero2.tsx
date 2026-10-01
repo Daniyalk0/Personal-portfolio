@@ -73,7 +73,10 @@ export default function Hero2() {
         "
       />
 
-      <motion.div style={{ y: contentY }} className="absolute inset-0 z-0">
+      <motion.div
+        style={{ y: contentY }}
+        className="absolute inset-0 z-0 max-md:transform-none!"
+      >
         <HeroName />
       </motion.div>
 
@@ -85,7 +88,10 @@ export default function Hero2() {
   <Hero3D />
 </div>
 
-      <motion.div style={{ y: contentY }} className="absolute inset-0 z-20">
+      <motion.div
+        style={{ y: contentY }}
+        className="absolute inset-0 z-20 max-md:transform-none!"
+      >
         <HeroIntro />
       </motion.div>
 

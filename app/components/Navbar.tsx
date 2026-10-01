@@ -154,7 +154,7 @@ export default function EditorialNavbar() {
                     "Software Engineer",
                     "Frontend Developer",
                   ]}
-                  className={`text-[8px] sm:text-[15px]  ml-[2px] tracking-[0.25em] ${scrolled ? "text-[#212121]" : "text-[#fedede] group-hover:text-neutral-600"} font-serif
+                  className={`text-[12px] sm:text-[15px]  ml-[2px] tracking-[0.25em] ${scrolled ? "text-[#212121]" : "text-[#fedede] group-hover:text-neutral-600"} font-serif
                     italic transition-colors duration-300`}
                 />
               </Link>

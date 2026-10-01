@@ -8,13 +8,13 @@ import { AIAssistant} from './components/chat/AIAssistant'
 
 const page = () => {
   return (
-    <>
+    <div className="overflow-hidden">
     <Hero2/>
     <SelectedWork/>
     <AboutSection/>
     <CraftSection/>
    <AIAssistant/>
-    </>
+    </div>
   )
 }
 

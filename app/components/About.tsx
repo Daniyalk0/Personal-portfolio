@@ -85,121 +85,7 @@ const GALLERY_FRAGMENTS: Fragment[] = [
   },
 ];
 
-const PaperFragment = ({ item }: { item: Fragment }) => {
-  const sizeClasses = {
-    sm: "w-38 sm:w-32 md:w-52",
-    md: "w-48 sm:w-40 md:w-64",
-    lg: "w-52 sm:w-52 md:w-80",
-  };
 
-  return (
-    <motion.div
-      style={
-        {
-          "--top-mob": item.top.mobile,
-          "--left-mob": item.left.mobile,
-          "--top-desk": item.top.desktop,
-          "--left-desk": item.left.desktop,
-          zIndex: item.zIndex,
-        } as any
-      }
-      // Responsive Positioning
-      className={`absolute top-[var(--top-mob)] left-[var(--left-mob)] lg:top-[var(--top-desk)] lg:left-[var(--left-desk)] 
-        cursor-pointer group bg-[#f8f2e7] dark:bg-[#12100e]  
-        p-2 pb-2 lg:p-3 lg:pb-12
-        shadow-[0_4px_12px_rgba(0,0,0,0.1),0_15px_35px_-5px_rgba(0,0,0,0.2)]
-        hover:shadow-[0_20px_50px_-10px_rgba(0,0,0,0.4)]
-        transition-shadow duration-300 ${sizeClasses[item.size]}`}
-      // Card movement: SNAPPY
-initial={{
-  opacity: 0,
-  y: 80,
-  scale: 0.85,
-  rotate: item.rotation + 12,
-  filter: "blur(10px)",
-}}
-whileInView={{
-  opacity: 1,
-  y: 0,
-  scale: 1,
-  rotate: item.rotation,
-  filter: "blur(0px)",
-}}
-viewport={{
-  once: true,
-  margin: "-50px",
-}}
-transition={{
-  type: "spring",
-  stiffness: 80,
-  damping: 18,
-  mass: 0.6,
-
-  opacity: {
-    duration: 0.4,
-  },
-  filter: {
-    duration: 0.4,
-  },
-}}
-whileHover={{
-  rotate: 0,
-  scale: 1.05,
-  y: -10,
-  zIndex: 50,
-  transition: {
-    type: "spring",
-    stiffness: 200,
-    damping: 20,
-  },
-}}
-whileTap={{
-  scale: 0.98,
-}}
-    >
-      {/* Visual Detail: Matte Washi Tape */}
-      <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-16 h-8 bg-white/30 dark:bg-zinc-800/30 backdrop-blur-md border border-white/20 rotate-1 group-hover:-translate-y-1 transition-transform duration-300" />
-
-      {/* Image Container */}
-      <div className="relative overflow-hidden aspect-[4/5] bg-zinc-100 dark:bg-zinc-800 shadow-[inset_0_0_10px_rgba(0,0,0,0.1)]">
-        {/* Continuous Slow Zoom Image */}
-        <motion.div
-          className="w-full h-full"
-          whileHover={{
-            scale: 1.2,
-            transition: { duration: 10, ease: "linear" }, // Continues zooming as long as hovered
-          }}
-          transition={{ duration: 0.6, ease: "easeOut" }} // Reset zoom speed
-        >
-          <Image
-            src={item.src}
-            alt={item.alt}
-            fill
-            className="object-cover hover:scale-110 transition-transform duration-500"
-            sizes="(max-width: 768px) 50vw, 30vw"
-          />
-        </motion.div>
-
-        {/* Paper Texture Overlay */}
-        <div className="absolute inset-0 pointer-events-none opacity-[0.05] mix-blend-multiply bg-[url('https://www.transparenttextures.com/patterns/natural-paper.png')]" />
-      </div>
-
-      {/* Card Info */}
-      <div className="mt-4 flex flex-col items-center">
-        <p className="text-[12px] md:text-sm font-serif italic text-zinc-800 dark:text-zinc-200 text-center px-2">
-          "{item.caption}"
-        </p>
-
-        <div className="w-full mt-4 flex justify-between items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 pt-2 border-t border-zinc-100 dark:border-zinc-800">
-          <span className="text-[8px] uppercase tracking-widest text-zinc-400 font-bold">
-            {item.location}
-          </span>
-          <span className="text-[8px] font-mono text-zinc-400">#{item.id}</span>
-        </div>
-      </div>
-    </motion.div>
-  );
-};
 
 export default function AboutSection() {
   const containerRef = useRef<HTMLElement>(null);
@@ -254,13 +140,14 @@ export default function AboutSection() {
           {/* Heading */}
           <div className="border-b border-black/10 px-4 pb-12 lg:col-span-4 lg:border-b-0 lg:border-r lg:px-8">
 
-            <motion.div
-              ref={aboutRef}
-              style={{ y: headingY }}
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8 }}
-            >
+         <motion.div
+  ref={aboutRef}
+  style={{ y: headingY }}
+  initial={{ opacity: 0, y: 30 }}
+  animate={isInView ? { opacity: 1, y: 0 } : {}}
+  transition={{ duration: 0.8 }}
+  className="max-md:transform-none!"
+>
               <p className="mb-6 text-[10px] font-mono uppercase tracking-[0.2em] text-[#e53935]">
                 The person behind the code
               </p>

@@ -15,19 +15,14 @@ import { MaskedReveal } from "@/app/components/ui/Masked-reveal";
 import { TextReveal } from "@/app/components/ui/Text-reveal";
 
 export default function SelectedWork() {
+  const headerRef = useRef<HTMLElement>(null);
 
-const headerRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: headerRef,
+    offset: ["start end", "end start"],
+  });
 
-const { scrollYProgress } = useScroll({
-  target: headerRef,
-  offset: ["start end", "end start"],
-});
-
-const headerY = useTransform(
-  scrollYProgress,
-  [0, 1],
-  [100, -100]
-);
+  const headerY = useTransform(scrollYProgress, [0, 1], [100, -100]);
   return (
     <section
       id="work"
@@ -39,12 +34,13 @@ const headerY = useTransform(
         md:px-10 md:py-24
       "
     >
-
       <div className="container mx-auto">
         {/* Editorial Header */}
-       <motion.header
-  ref={headerRef}
-  style={{ y: headerY }} className="mb-16 border-b border-black/20 pb-8 md:mb-20">
+        <motion.header
+          ref={headerRef}
+          style={{ y: headerY }}
+          className="mb-16 border-b border-black/20 pb-8 md:mb-20 max-md:transform-none!"
+        >
           <div className="mb-6 flex items-center justify-between">
             <span className="text-[10px] font-mono uppercase tracking-[0.25em] text-black/50">
               01 / Selected Work
@@ -123,19 +119,19 @@ export function ProjectRow({ project }: { project: Project }) {
     offset: ["start end", "end start"],
   });
 
-const yProject = useTransform(scrollYProgress, [0, 1], [100, -100]);
+  const yProject = useTransform(scrollYProgress, [0, 1], [100, -100]);
 
-const xProject = useTransform(scrollYProgress, [0, 1], [-50, 50]);
+  const xProject = useTransform(scrollYProgress, [0, 1], [-50, 50]);
 
   return (
-    <motion.a
-      ref={rowRef}
-      style={{ y: yProject, x: xProject }}
-      href={project.liveUrl}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="group block"
-    >
+   <motion.a
+  ref={rowRef}
+  style={{ y: yProject, x: xProject }}
+  href={project.liveUrl}
+  target="_blank"
+  rel="noopener noreferrer"
+  className="group block max-md:transform-none!"
+>
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -248,18 +244,18 @@ const xProject = useTransform(scrollYProgress, [0, 1], [-50, 50]);
           </p> */}
           {/* Tech Stack - Vintage Archive Style */}
           {/* Tech Stack - 1950s Vintage Style */}
-     <div className="mt-4 flex flex-wrap gap-1.5 sm:mt-8 sm:gap-2">
-  {project.technologies.map((tech: string, i: number) => (
-    <motion.div
-      key={tech}
-      initial={{ opacity: 0, y: 6 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{
-        duration: 0.4,
-        delay: i * 0.05,
-      }}
-      className="
+          <div className="mt-4 flex flex-wrap gap-1.5 sm:mt-8 sm:gap-2">
+            {project.technologies.map((tech: string, i: number) => (
+              <motion.div
+                key={tech}
+                initial={{ opacity: 0, y: 6 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{
+                  duration: 0.4,
+                  delay: i * 0.05,
+                }}
+                className="
         group/tech
         relative
         flex items-center
@@ -271,10 +267,10 @@ const xProject = useTransform(scrollYProgress, [0, 1], [-50, 50]);
         hover:bg-[#e53935]
         sm:px-2.5 sm:py-1.5
       "
-    >
-      {/* Index */}
-      <span
-        className="
+              >
+                {/* Index */}
+                <span
+                  className="
           mr-1.5
           text-[7px]
           font-mono
@@ -283,13 +279,13 @@ const xProject = useTransform(scrollYProgress, [0, 1], [-50, 50]);
           group-hover/tech:text-white/60
           sm:text-[8px]
         "
-      >
-        {String(i + 1).padStart(2, "0")}
-      </span>
+                >
+                  {String(i + 1).padStart(2, "0")}
+                </span>
 
-      {/* Tech */}
-      <span
-        className="
+                {/* Tech */}
+                <span
+                  className="
           text-[8px]
           font-mono
           uppercase
@@ -300,12 +296,12 @@ const xProject = useTransform(scrollYProgress, [0, 1], [-50, 50]);
           sm:text-[9px]
           sm:tracking-[0.15em]
         "
-      >
-        {tech}
-      </span>
-    </motion.div>
-  ))}
-</div>
+                >
+                  {tech}
+                </span>
+              </motion.div>
+            ))}
+          </div>
         </div>
 
         {/* 06. Action (Enhanced for Mobile) */}

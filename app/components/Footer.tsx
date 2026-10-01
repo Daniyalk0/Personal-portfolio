@@ -49,6 +49,7 @@ const contentY = useTransform(
         aria-hidden="true"
         style={{ y: backgroundY }}
         className="
+        max-md:transform-none!
           pointer-events-none
           absolute inset-0 -z-[5]
           bg-[radial-gradient(circle_at_50%_20%,rgba(255,255,255,0.18),transparent_35%),radial-gradient(circle_at_80%_80%,rgba(90,0,0,0.16),transparent_40%)]
@@ -57,24 +58,25 @@ const contentY = useTransform(
 
       {/* ───────────────── CONTENT ───────────────── */}
 
-      <motion.div
-        style={{ y: contentY }}
-      id="footer"
-        className="
-          relative
-          mx-auto
-          flex
-          min-h-[100svh]
-          w-full
-          max-w-[1600px]
-          flex-col
-          px-5
-          py-5
-          sm:px-8
-          sm:py-6
-          lg:px-10
-        "
-      >
+    <motion.div
+  style={{ y: contentY }}
+  id="footer"
+  className="
+    relative
+    mx-auto
+    flex
+    min-h-[100svh]
+    w-full
+    max-w-[1600px]
+    flex-col
+    px-5
+    py-5
+    sm:px-8
+    sm:py-6
+    lg:px-10
+    max-md:transform-none!
+  "
+>
         {/* TOP BAR */}
 {/* 
         <div className="flex items-center justify-between border-b border-black/15 pb-5">
