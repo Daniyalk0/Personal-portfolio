@@ -30,7 +30,7 @@ function DesktopHeroName() {
             uppercase
             leading-none
             tracking-[-0.06em]
-            text-white/5
+            text-white/3
             scale-x-[1.45]
             origin-center
           "
@@ -76,7 +76,7 @@ function MobileHeroName() {
             uppercase
             leading-none
             tracking-[-0.06em]
-            text-white/10
+            text-white/4
             scale-y-[2.8]
             origin-center
           "

@@ -1,6 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "motion/react";
+import { useRef } from "react";
 import {
   ArrowUpRight,
   //   Github,
@@ -11,8 +12,29 @@ import HeroName from "./hero/HeroName";
 import { FaGithub, FaInstagram, FaLinkedin } from "react-icons/fa6";
 
 export default function Footer() {
+const footerRef = useRef<HTMLElement>(null);
+
+const { scrollYProgress } = useScroll({
+  target: footerRef,
+  offset: ["start end", "end start"],
+});
+
+const backgroundY = useTransform(
+  scrollYProgress,
+  [0, 1],
+  ["-30%", "30%"]
+);
+
+const contentY = useTransform(
+  scrollYProgress,
+  [0, 1],
+  ["100px", "-100px"]
+);
+
+
   return (
-    <footer 
+    <footer
+      ref={footerRef}
       className="
         relative
         isolate
@@ -23,8 +45,9 @@ export default function Footer() {
       "
     >
 
-      <div
+      <motion.div
         aria-hidden="true"
+        style={{ y: backgroundY }}
         className="
           pointer-events-none
           absolute inset-0 -z-[5]
@@ -34,7 +57,8 @@ export default function Footer() {
 
       {/* ───────────────── CONTENT ───────────────── */}
 
-      <div
+      <motion.div
+        style={{ y: contentY }}
       id="footer"
         className="
           relative
@@ -318,7 +342,7 @@ export default function Footer() {
             Back to top ↑
           </a>
         </div>
-      </div>
+      </motion.div>
 
       {/* Bottom red gradient */}
 

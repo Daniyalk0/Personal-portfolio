@@ -1,18 +1,45 @@
+"use client";
+
+import { motion, useScroll, useTransform } from "motion/react";
+import { useRef } from "react";
 import HeroIntro from "./HeroIntro";
 import HeroName from "./HeroName";
 import HeroVisual from "./HeroVisuals";
+import Hero3D from "./Hero3d";
+import Hero3DHint from "./Hero3dHint";
 
 export default function Hero2() {
+  const heroRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"],
+  });
+
+  
+
+  const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
+  const portraitY = useTransform(scrollYProgress, [0, 1], ["0%", "-10%"]);
+  const contentY = useTransform(scrollYProgress, [0, 1], ["0%", "-25%"]);
+
   return (
-    <section 
-    id="hero"
+    <section
+      ref={heroRef}
+      id="hero"
       aria-labelledby="hero-title"
       className="
         relative isolate min-h-[100svh] overflow-hidden
-        bg-gradient-to-br from-[#d32f2f] via-[#e53935] to-[#b71c1c]
+        bg-[#d32f2f]
         text-neutral-950
       "
     >
+      <motion.div
+        aria-hidden="true"
+        style={{ y: backgroundY }}
+        className="absolute -inset-y-[20%] inset-x-0 -z-10 bg-gradient-to-br from-[#d32f2f] via-[#e53935] to-[#b71c1c]"
+      >
+        <div className="absolute top-0 right-0 h-[500px] w-[500px] rounded-full bg-white/10 blur-[120px]" />
+      </motion.div>
+
       {/* Editorial grid */}
       {/* <div
         aria-hidden="true"
@@ -23,9 +50,6 @@ export default function Hero2() {
           [mask-image:linear-gradient(to_bottom,black_0%,black_75%,transparent_100%)]
         "
       /> */}
-
-      {/* Subtle light glow in top right */}
-      <div className="absolute top-0 right-0 -z-10 h-[500px] w-[500px] rounded-full bg-white/10 blur-[120px]" />
 
       {/* Top framing line */}
       <div
@@ -49,9 +73,21 @@ export default function Hero2() {
         "
       />
 
-      <HeroName />
-      <HeroIntro />
-      <HeroVisual />
+      <motion.div style={{ y: contentY }} className="absolute inset-0 z-0">
+        <HeroName />
+      </motion.div>
+
+      {/* <motion.div style={{ y: portraitY }} className="absolute inset-0 z-10">
+        <HeroVisual />
+      </motion.div> */}
+ <Hero3DHint heroRef={heroRef} />
+      <div className="h-screen w-full">
+  <Hero3D />
+</div>
+
+      <motion.div style={{ y: contentY }} className="absolute inset-0 z-20">
+        <HeroIntro />
+      </motion.div>
 
       {/* Editorial metadata - Updated text color for contrast */}
       <span

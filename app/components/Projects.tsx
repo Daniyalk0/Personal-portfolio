@@ -1,19 +1,33 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useRef, useState } from "react";
 import {
   AnimatePresence,
   useSpring,
   useMotionValue,
   motion,
+  useTransform,
+  useScroll,
 } from "motion/react";
 import Image from "next/image";
-import { PROJECTS } from "./ProjectsData";
-import Link from "next/link";
+import { PROJECTS, type Project } from "./ProjectsData";
 import { MaskedReveal } from "@/app/components/ui/Masked-reveal";
 import { TextReveal } from "@/app/components/ui/Text-reveal";
 
 export default function SelectedWork() {
+
+const headerRef = useRef<HTMLElement>(null);
+
+const { scrollYProgress } = useScroll({
+  target: headerRef,
+  offset: ["start end", "end start"],
+});
+
+const headerY = useTransform(
+  scrollYProgress,
+  [0, 1],
+  [100, -100]
+);
   return (
     <section
       id="work"
@@ -28,7 +42,9 @@ export default function SelectedWork() {
 
       <div className="container mx-auto">
         {/* Editorial Header */}
-        <header className="mb-16 border-b border-black/20 pb-8 md:mb-20">
+       <motion.header
+  ref={headerRef}
+  style={{ y: headerY }} className="mb-16 border-b border-black/20 pb-8 md:mb-20">
           <div className="mb-6 flex items-center justify-between">
             <span className="text-[10px] font-mono uppercase tracking-[0.25em] text-black/50">
               01 / Selected Work
@@ -69,12 +85,12 @@ export default function SelectedWork() {
             "
             text="A collection of selected projects spanning full-stack applications, business websites, and digital experiences."
           />
-        </header>
+        </motion.header>
 
         {/* Project Archive */}
         <div className="mx-auto flex max-w-7xl flex-col">
-          {PROJECTS.map((project, index) => (
-            <ProjectRow key={project.id} project={project} index={index} />
+          {PROJECTS.map((project) => (
+            <ProjectRow key={project.id} project={project} />
           ))}
         </div>
 
@@ -84,15 +100,8 @@ export default function SelectedWork() {
   );
 }
 
-export function ProjectRow({
-  project,
-  index,
-}: {
-  project: any;
-  index: number;
-}) {
+export function ProjectRow({ project }: { project: Project }) {
   const [isHovered, setIsHovered] = useState(false);
-  const [mounted, setMounted] = useState(false);
 
   // Floating image logic (Desktop)
   const mouseX = useMotionValue(0);
@@ -107,18 +116,25 @@ export function ProjectRow({
     mouseY.set(e.clientY - rect.top - 100);
   };
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  const rowRef = useRef<HTMLAnchorElement>(null);
 
-  if (!mounted) return <div className="h-40" />;
+  const { scrollYProgress } = useScroll({
+    target: rowRef,
+    offset: ["start end", "end start"],
+  });
+
+const yProject = useTransform(scrollYProgress, [0, 1], [100, -100]);
+
+const xProject = useTransform(scrollYProgress, [0, 1], [-50, 50]);
 
   return (
-    <Link
+    <motion.a
+      ref={rowRef}
+      style={{ y: yProject, x: xProject }}
       href={project.liveUrl}
       target="_blank"
       rel="noopener noreferrer"
-      className="block group"
+      className="group block"
     >
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -174,7 +190,7 @@ export function ProjectRow({
         mb-2
         text-4xl font-semibold
         uppercase leading-none
-        tracking-[-0.05em]
+        tracking-tighter
         text-[#111]
         transition-transform duration-500
         lg:text-7xl
@@ -205,7 +221,7 @@ export function ProjectRow({
           initial={{ clipPath: "inset(100% 0% 0% 0%)" }}
           whileInView={{ clipPath: "inset(0% 0% 0% 0%)" }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="relative mt-8 w-full aspect-[16/10] lg:hidden overflow-hidden rounded-sm"
+          className="relative mt-8 w-full aspect-16/10 lg:hidden overflow-hidden rounded-sm"
         >
           <motion.div
             whileInView={{ scale: 1.1 }}
@@ -337,7 +353,7 @@ export function ProjectRow({
               animate={{ opacity: 1, scale: 1, rotate: 0 }}
               exit={{ opacity: 0, scale: 0.9, rotate: 2 }}
               style={{ x, y }}
-              className="pointer-events-none absolute left-0 top-0 z-50 hidden lg:block w-[400px] h-[250px] overflow-hidden rounded-sm shadow-2xl"
+              className="pointer-events-none absolute left-0 top-0 z-50 hidden w-100 h-62.5 lg:block overflow-hidden rounded-sm shadow-2xl"
             >
               <Image
                 src={project.image}
@@ -349,6 +365,6 @@ export function ProjectRow({
           )}
         </AnimatePresence>
       </motion.div>
-    </Link>
+    </motion.a>
   );
 }

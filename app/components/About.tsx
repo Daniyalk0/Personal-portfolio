@@ -205,6 +205,19 @@ export default function AboutSection() {
   const containerRef = useRef<HTMLElement>(null);
   const isInView = useInView(containerRef, { once: true, amount: 0.2 });
 
+  const aboutRef = useRef<HTMLDivElement>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: aboutRef,
+    offset: ["start end", "end start"],
+  });
+
+  const headingY = useTransform(
+    scrollYProgress,
+    [0, 1],
+    [80, -80]
+  );
+
   return (
     <section
       ref={containerRef}
@@ -235,13 +248,15 @@ export default function AboutSection() {
           </div>
         </header>
 
-
         {/* Main Grid */}
         <div className="grid grid-cols-1 border-l border-black/10 lg:grid-cols-12">
 
           {/* Heading */}
           <div className="border-b border-black/10 px-4 pb-12 lg:col-span-4 lg:border-b-0 lg:border-r lg:px-8">
+
             <motion.div
+              ref={aboutRef}
+              style={{ y: headingY }}
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8 }}
@@ -271,8 +286,8 @@ export default function AboutSection() {
                 </h2>
               </MaskedReveal>
             </motion.div>
-          </div>
 
+          </div>
 
           {/* Content */}
           <div className="lg:col-span-8">
@@ -316,7 +331,6 @@ export default function AboutSection() {
 
               </div>
 
-
               {/* Portrait */}
               <div className="relative min-h-[420px]">
 
@@ -346,7 +360,6 @@ export default function AboutSection() {
               </div>
 
             </div>
-
 
             {/* Quote */}
             <div className="border-t border-black/10 p-6 md:p-10 lg:p-12">

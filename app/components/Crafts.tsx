@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
-import { motion, AnimatePresence, useInView } from "motion/react";
+import { motion, AnimatePresence, useInView, useTransform, useScroll } from "motion/react";
 import { ArrowUpRight, Sparkle } from "lucide-react";
 import { MaskedReveal } from "@/app/components/ui/Masked-reveal";
 import { TextReveal } from "@/app/components/ui/Text-reveal";
@@ -129,6 +129,19 @@ export default function CraftSection() {
     }
   };
 
+  const craftsRef = useRef<HTMLDivElement>(null);
+
+const { scrollYProgress: craftsProgress } = useScroll({
+  target: craftsRef,
+  offset: ["start end", "end start"],
+});
+
+const craftsY = useTransform(
+  craftsProgress,
+  [0, 1],
+  [50, -50]
+);
+
   return (
     <section
       ref={sectionRef}
@@ -157,7 +170,9 @@ export default function CraftSection() {
               Tools & Technologies{" "}
             </span>{" "}
           </div>{" "}
-          <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:items-end">
+          <motion.div
+  ref={craftsRef}
+  style={{ y: craftsY }} className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:items-end">
             {" "}
             <motion.div
               initial={{ opacity: 0, y: 35 }}
@@ -180,7 +195,7 @@ export default function CraftSection() {
                 digital products.{" "}
               </p>{" "}
             </div>{" "}
-          </div>{" "}
+          </motion.div>{" "}
         </header>{" "}
         {/* ───────────────── MAIN GRID ───────────────── */}{" "}
         <div className="grid grid-cols-1 lg:grid-cols-12">
