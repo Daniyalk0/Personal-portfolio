@@ -19,8 +19,8 @@ function Model() {
 
   const isMobile = viewport.width < 6;
 
-  const scale = isMobile ? 3 : 5;
-  const positionY = isMobile ? -1 : -1.2;
+  const scale = isMobile ? 2.4 : 5;
+  const positionY = isMobile ? -0.4 : -1.2;
 
   const introProgress = useRef(0);
   const clickPulse = useRef(0);
