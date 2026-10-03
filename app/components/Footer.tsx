@@ -38,7 +38,7 @@ const contentY = useTransform(
       className="
         relative
         isolate
-        min-h-[100svh]
+        min-h-[100dvh]
         overflow-hidden
         bg-[#e53935]
         text-[#f9d9d8]
@@ -65,7 +65,7 @@ const contentY = useTransform(
     relative
     mx-auto
     flex
-    min-h-[100svh]
+    min-h-[100dvh]
     w-full
     max-w-[1600px]
     flex-col

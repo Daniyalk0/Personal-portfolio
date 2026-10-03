@@ -119,7 +119,7 @@ export default function AboutSection() {
         md:pt-6
       "
     >
-      <div className="relative z-10 mx-auto max-w-[1600px] px-6 lg:px-10">
+      <div className="relative z-10 mx-auto max-w-[1600px] px-6 lg:px-0">
 
         {/* Header */}
         <header className="mb-12 border-b border-black/15 pb-5 md:mb-16">
@@ -159,7 +159,7 @@ export default function AboutSection() {
               >
                 <h2
                   className="
-                    text-7xl
+                    text-[clamp(3.8rem,13vw,12rem)]
                     font-semibold
                     uppercase
                     leading-[0.8]

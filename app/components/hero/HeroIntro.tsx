@@ -53,7 +53,7 @@ export default function HeroIntro() {
             delay: 1.5, // Starts floating after the entrance
           },
         }}
-        className="group relative flex w-fit cursor-pointer items-center gap-3 border border-white/20 bg-[#e53935] p-2 pr-3 shadow-[8px_8px_0_rgba(0,0,0,0.15)] transition-all duration-300 ease-out hover:-translate-y-2 hover:shadow-[12px_12px_0_rgba(0,0,0,0.2)] sm:gap-4 sm:p-3"
+        className="pointer-events-auto group relative flex w-fit cursor-pointer items-center gap-3 border border-white/20 bg-[#e53935] p-2 pr-3 shadow-[8px_8px_0_rgba(0,0,0,0.15)] transition-all duration-300 ease-out hover:-translate-y-2 hover:shadow-[12px_12px_0_rgba(0,0,0,0.2)] sm:gap-4 sm:p-3"
       >
         {/* The content remains the same */}
         <div className="absolute inset-0 overflow-hidden">

@@ -174,11 +174,12 @@ export default function EditorialNavbar() {
               {/* Right: Status & Toggle */}
               <div className="flex items-center gap-8">
                 <div className="hidden lg:flex">
-                  <div
-                    className={`group relative overflow-hidden flex items-center gap-3 rounded-full border px-4 py-2 transition-all duration-300 ease-out ${
+                  <a
+                    href="mailto:getdaniyalkhan@gmail.com"
+                    className={`group relative overflow-hidden flex items-center gap-3 rounded-full border px-4 py-2 transition-all duration-300 ease-out cursor-pointer select-none ${
                       scrolled
                         ? "border-neutral-200 bg-neutral-100"
-                        : "border border-white/20 bg-[#e53935] shadow-[8px_8px_0_rgba(0,0,0,0.15)] hover:-translate-y-1 hover:shadow-[12px_12px_0_rgba(0,0,0,0.2)]"
+                        : "border-white/20 bg-[#e53935] shadow-[8px_8px_0_rgba(0,0,0,0.15)] hover:-translate-y-1 hover:shadow-[12px_12px_0_rgba(0,0,0,0.2)]"
                     }`}
                   >
                     {/* Constant shimmer */}
@@ -197,7 +198,7 @@ export default function EditorialNavbar() {
                     >
                       Available to Build
                     </span>
-                  </div>
+                  </a>
                 </div>
 
                 {/* Mobile "INDEX" Trigger */}
@@ -376,24 +377,27 @@ export default function EditorialNavbar() {
 
                 <div className="flex items-end justify-between gap-5">
                   {/* Availability */}
-                  <div>
-                    <div className="mb-2 flex items-center gap-2">
-                      <span className="relative flex h-2 w-2">
-                        <span className="absolute inset-0 animate-ping rounded-full bg-white/50" />
-                        <span className="relative h-2 w-2 rounded-full bg-white" />
-                      </span>
+                <a
+  href="mailto:getdaniyalkhan@gmail.com"
+  className="block cursor-pointer"
+>
+  <div>
+    <div className="mb-2 flex items-center gap-2">
+      <span className="relative flex h-2 w-2">
+        <span className="absolute inset-0 animate-ping rounded-full bg-white/50" />
+        <span className="relative h-2 w-2 rounded-full bg-white" />
+      </span>
 
-                      <span className="font-mono text-[8px] uppercase tracking-[0.22em] text-white/70">
-                        Available to Build
-                      </span>
-                    </div>
+      <span className="font-mono text-[8px] uppercase tracking-[0.22em] text-white/70">
+        Available to Build
+      </span>
+    </div>
 
-                    <p className="font-serif text-sm italic text-white/50">
-                      Frontend / Full-stack
-                    </p>
-                  </div>
-
-        
+    <p className="font-serif text-sm italic text-white/50">
+      Frontend / Full-stack
+    </p>
+  </div>
+</a>
                 </div>
               </div>
             </div>

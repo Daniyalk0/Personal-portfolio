@@ -165,7 +165,7 @@ export default function CraftSection() {
             {" "}
             <span className="font-mono text-[9px] uppercase tracking-[0.25em] text-black/45">
               {" "}
-              03 / Craft{" "}
+              04 / Craft{" "}
             </span>{" "}
             <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-black/35">
               {" "}

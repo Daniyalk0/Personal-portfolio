@@ -122,7 +122,7 @@ function Model() {
 
 export default function Hero3D() {
   return (
-    <div className="absolute inset-0 z-50">
+    <div className="absolute inset-0 z-10">
       <Canvas
         camera={{
           position: [0, 0, 5],

@@ -83,7 +83,7 @@ export default function RootLayout({
           {/* <IntroOverlay/> */}
           {/* <VintageAssistant variant="mobile-persistent" /> */}
         </main>
-        <Footer />
+        
 
         {/* </IntroProvider> */}
         {/* Footer goes here */}

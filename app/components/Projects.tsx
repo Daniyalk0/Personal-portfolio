@@ -34,7 +34,7 @@ export default function SelectedWork() {
         md:px-10 md:py-24
       "
     >
-      <div className="container mx-auto">
+      <div className="mx-auto max-w-[1600px]">
         {/* Editorial Header */}
         <motion.header
           ref={headerRef}
@@ -84,7 +84,7 @@ export default function SelectedWork() {
         </motion.header>
 
         {/* Project Archive */}
-        <div className="mx-auto flex max-w-7xl flex-col">
+        <div className="flex w-full flex-col">
           {PROJECTS.map((project) => (
             <ProjectRow key={project.id} project={project} />
           ))}
@@ -108,8 +108,8 @@ export function ProjectRow({ project }: { project: Project }) {
 
   const handleMouseMove = (e: React.MouseEvent) => {
     const rect = e.currentTarget.getBoundingClientRect();
-    mouseX.set(e.clientX - rect.left - 150);
-    mouseY.set(e.clientY - rect.top - 100);
+    mouseX.set(e.clientX - rect.left - 260);
+    mouseY.set(e.clientY - rect.top - 162);
   };
 
   const rowRef = useRef<HTMLAnchorElement>(null);
@@ -124,14 +124,14 @@ export function ProjectRow({ project }: { project: Project }) {
   const xProject = useTransform(scrollYProgress, [0, 1], [-50, 50]);
 
   return (
-   <motion.a
-  ref={rowRef}
-  style={{ y: yProject, x: xProject }}
-  href={project.liveUrl}
-  target="_blank"
-  rel="noopener noreferrer"
-  className="group block max-md:transform-none!"
->
+    <motion.a
+      ref={rowRef}
+      style={{ y: yProject, x: xProject }}
+      href={project.liveUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="group block max-md:transform-none!"
+    >
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -349,7 +349,7 @@ export function ProjectRow({ project }: { project: Project }) {
               animate={{ opacity: 1, scale: 1, rotate: 0 }}
               exit={{ opacity: 0, scale: 0.9, rotate: 2 }}
               style={{ x, y }}
-              className="pointer-events-none absolute left-0 top-0 z-50 hidden w-100 h-62.5 lg:block overflow-hidden rounded-sm shadow-2xl"
+              className="pointer-events-none absolute left-0 top-0 z-50 hidden h-[325px] w-[520px] overflow-hidden rounded-sm shadow-2xl lg:block"
             >
               <Image
                 src={project.image}

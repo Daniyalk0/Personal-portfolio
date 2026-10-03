@@ -4,8 +4,12 @@ import { motion, useScroll, useTransform } from "motion/react";
 import { useRef } from "react";
 import HeroIntro from "./HeroIntro";
 import HeroName from "./HeroName";
-import HeroVisual from "./HeroVisuals";
-import Hero3D from "./Hero3d";
+import dynamic from "next/dynamic";
+
+const Hero3D = dynamic(() => import("./Hero3d"), {
+  ssr: false,
+  loading: () => null,
+});
 import Hero3DHint from "./Hero3dHint";
 
 export default function Hero2() {
@@ -90,7 +94,7 @@ export default function Hero2() {
 
       <motion.div
         style={{ y: contentY }}
-        className="absolute inset-0 z-20 max-md:transform-none!"
+        className="pointer-events-none absolute inset-0 z-20 max-md:transform-none!"
       >
         <HeroIntro />
       </motion.div>
