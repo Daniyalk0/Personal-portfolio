@@ -17,7 +17,7 @@ const page = () => {
     <Services/>
     <CraftSection/>
     <Footer />
-   {/* <AIAssistant/> */}
+   <AIAssistant/>
     </div>
   )
 }

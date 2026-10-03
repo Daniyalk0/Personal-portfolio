@@ -110,6 +110,8 @@ const CATEGORIES = ["Frontend", "Backend", "Tools"];
 export default function CraftSection() {
   const [activeTech, setActiveTech] = useState<Technology>(CRAFT_ITEMS[0]);
   const [hasOnboarded, setHasOnboarded] = useState(false);
+  const [isTechListHovered, setIsTechListHovered] = useState(false);
+  const [isTechListFocused, setIsTechListFocused] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
   const specimenRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(sectionRef, { once: true, amount: 0.35 });
@@ -121,6 +123,21 @@ export default function CraftSection() {
       return () => clearTimeout(timer);
     }
   }, [isInView, hasOnboarded]);
+
+  useEffect(() => {
+    if (!hasOnboarded || isTechListHovered || isTechListFocused) return;
+
+    const timer = setTimeout(() => {
+      setActiveTech((currentTech) => {
+        const currentIndex = CRAFT_ITEMS.findIndex(
+          (tech) => tech.id === currentTech.id,
+        );
+        return CRAFT_ITEMS[(currentIndex + 1) % CRAFT_ITEMS.length];
+      });
+    }, 3000);
+
+    return () => clearTimeout(timer);
+  }, [activeTech, hasOnboarded, isTechListFocused, isTechListHovered]);
 
   const handleTechSelect = (tech: Technology) => {
     setActiveTech(tech);
@@ -205,7 +222,20 @@ export default function CraftSection() {
         <div className="grid grid-cols-1 lg:grid-cols-12">
           {" "}
           {/* LEFT — TECHNOLOGY INDEX */}{" "}
-          <div className="lg:col-span-7 lg:border-r lg:border-black/10 lg:pr-10">
+          <div
+            className="lg:col-span-7 lg:border-r lg:border-black/10 lg:pr-10"
+            onMouseEnter={() => setIsTechListHovered(true)}
+            onMouseLeave={() => setIsTechListHovered(false)}
+            onFocusCapture={() => setIsTechListFocused(true)}
+            onBlurCapture={(event) => {
+              if (
+                !(event.relatedTarget instanceof Node) ||
+                !event.currentTarget.contains(event.relatedTarget)
+              ) {
+                setIsTechListFocused(false);
+              }
+            }}
+          >
             {CATEGORIES.map((category, categoryIndex) => {
               const technologies = CRAFT_ITEMS.filter(
                 (tech) => tech.category === category,

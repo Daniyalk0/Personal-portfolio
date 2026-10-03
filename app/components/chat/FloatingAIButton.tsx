@@ -1,5 +1,5 @@
 'use client'
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Bot, Sparkles } from "lucide-react";
 import { motion } from "motion/react";
 
@@ -12,24 +12,43 @@ const hoverPhrases = [
   "Check Daniyal's case studies",
 ];
 
+const getNextPhrase = (current: string) => {
+  const alternatives = hoverPhrases.filter((phrase) => phrase !== current);
+  return (
+    alternatives[Math.floor(Math.random() * alternatives.length)] ||
+    hoverPhrases[0]
+  );
+};
+
 export default function FloatingAIButton({
   onClick,
 }: {
   onClick: () => void;
 }) {
   const [isHovered, setIsHovered] = useState(false);
+  const [isAutoVisible, setIsAutoVisible] = useState(false);
   const [labelText, setLabelText] = useState(hoverPhrases[0]);
+  const isLabelVisible = isHovered || isAutoVisible;
 
   const cycleText = () => {
-    setLabelText((current) => {
-      const alternatives = hoverPhrases.filter((phrase) => phrase !== current);
-      const nextPhrase =
-        alternatives[Math.floor(Math.random() * alternatives.length)] ||
-        hoverPhrases[0];
-
-      return nextPhrase;
-    });
+    setLabelText(getNextPhrase);
   };
+
+  useEffect(() => {
+    let hideTimeout: ReturnType<typeof setTimeout> | undefined;
+
+    const interval = setInterval(() => {
+      setLabelText(getNextPhrase);
+      setIsAutoVisible(true);
+      clearTimeout(hideTimeout);
+      hideTimeout = setTimeout(() => setIsAutoVisible(false), 2500);
+    }, 5000);
+
+    return () => {
+      clearInterval(interval);
+      clearTimeout(hideTimeout);
+    };
+  }, []);
 
   return (
     <div
@@ -61,10 +80,10 @@ export default function FloatingAIButton({
       <motion.div
         initial={false}
         animate={{
-          width: isHovered ? "auto" : 0,
-          opacity: isHovered ? 1 : 0,
-          x: isHovered ? 0 : 12,
-          marginRight: isHovered ? 12 : 0,
+          width: isLabelVisible ? "auto" : 0,
+          opacity: isLabelVisible ? 1 : 0,
+          x: isLabelVisible ? 0 : 12,
+          marginRight: isLabelVisible ? 12 : 0,
         }}
         transition={{
           type: "spring",
