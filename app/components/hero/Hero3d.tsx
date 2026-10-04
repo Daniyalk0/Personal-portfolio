@@ -10,9 +10,7 @@ import { useEffect, useRef } from "react";
 import * as THREE from "three";
 
 function Model() {
-  const { scene } = useGLTF(
-    "/models/bronze_ray_statue_2k.gltf"
-  );
+  const { scene } = useGLTF("/models/bronze-ray-2k.glb");
 
   const modelRef = useRef<THREE.Group>(null);
   const { viewport } = useThree();
@@ -144,3 +142,4 @@ export default function Hero3D() {
     </div>
   );
 }
+useGLTF.preload("/models/bronze-ray-2k.glb");

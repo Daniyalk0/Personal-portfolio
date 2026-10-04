@@ -85,8 +85,6 @@ const GALLERY_FRAGMENTS: Fragment[] = [
   },
 ];
 
-
-
 export default function AboutSection() {
   const containerRef = useRef<HTMLElement>(null);
   const isInView = useInView(containerRef, { once: true, amount: 0.2 });
@@ -98,11 +96,7 @@ export default function AboutSection() {
     offset: ["start end", "end start"],
   });
 
-  const headingY = useTransform(
-    scrollYProgress,
-    [0, 1],
-    [80, -80]
-  );
+  const headingY = useTransform(scrollYProgress, [0, 1], [80, -80]);
 
   return (
     <section
@@ -120,7 +114,6 @@ export default function AboutSection() {
       "
     >
       <div className="relative z-10 mx-auto max-w-[1600px] px-6 lg:px-0">
-
         {/* Header */}
         <header className="mb-12 border-b border-black/15 pb-5 md:mb-16">
           <div className="flex items-center justify-between">
@@ -136,27 +129,21 @@ export default function AboutSection() {
 
         {/* Main Grid */}
         <div className="grid grid-cols-1 border-l border-black/10 lg:grid-cols-12">
-
           {/* Heading */}
           <div className="border-b border-black/10 px-4 pb-12 lg:col-span-4 lg:border-b-0 lg:border-r lg:px-8">
-
-         <motion.div
-  ref={aboutRef}
-  style={{ y: headingY }}
-  initial={{ opacity: 0, y: 30 }}
-  animate={isInView ? { opacity: 1, y: 0 } : {}}
-  transition={{ duration: 0.8 }}
-  className="max-md:transform-none!"
->
+            <motion.div
+              ref={aboutRef}
+              style={{ y: headingY }}
+              initial={{ opacity: 0, y: 30 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.8 }}
+              className="max-md:transform-none!"
+            >
               <p className="mb-6 text-[10px] font-mono uppercase tracking-[0.2em] text-[#e53935]">
                 The person behind the code
               </p>
 
-              <MaskedReveal
-                delay={0.3}
-                duration={1.2}
-                direction="up"
-              >
+              <MaskedReveal delay={0.3} duration={1.2} direction="up">
                 <h2
                   className="
                     text-[clamp(3.8rem,13vw,12rem)]
@@ -173,31 +160,25 @@ export default function AboutSection() {
                 </h2>
               </MaskedReveal>
             </motion.div>
-
           </div>
 
           {/* Content */}
           <div className="lg:col-span-8">
-
             {/* Intro + Portrait */}
             <div className="grid grid-cols-1 md:grid-cols-2">
-
               {/* Text */}
               <div className="flex flex-col justify-between border-b border-black/10 p-6 md:border-b-0 md:border-r md:p-10 lg:p-12">
-
-                <MaskedReveal
-                  delay={0.5}
-                  duration={1.2}
-                  direction="up"
-                >
-                  <p className="
+                <MaskedReveal delay={0.5} duration={1.2} direction="up">
+                  <p
+                    className="
                     max-w-xl
                     text-2xl
                     font-serif
                     italic
                     leading-tight
                     md:text-4xl
-                  ">
+                  "
+                  >
                     Building digital experiences that feel as intentional as a
                     well-bound book.
                   </p>
@@ -215,23 +196,23 @@ export default function AboutSection() {
                     text-black/55
                   "
                 />
-
               </div>
 
               {/* Portrait */}
               <div className="relative min-h-[420px]">
-
                 <Image
                   src="/daniyal-portrait.png"
                   alt="Daniyal"
                   fill
+  priority
                   className="object-cover grayscale"
                 />
 
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
 
                 <div className="absolute bottom-5 left-5">
-                  <span className="
+                  <span
+                    className="
                     bg-[#e53935]
                     px-2 py-1
                     text-[8px]
@@ -239,18 +220,16 @@ export default function AboutSection() {
                     uppercase
                     tracking-[0.2em]
                     text-white
-                  ">
+                  "
+                  >
                     Daniyal / Web Developer
                   </span>
                 </div>
-
               </div>
-
             </div>
 
             {/* Quote */}
             <div className="border-t border-black/10 p-6 md:p-10 lg:p-12">
-
               <TextReveal
                 text="Software should feel as carefully crafted as the experience it creates."
                 highlight="carefully crafted"
@@ -264,12 +243,9 @@ export default function AboutSection() {
                   md:text-4xl
                 "
               />
-
             </div>
-
           </div>
         </div>
-
       </div>
     </section>
   );
