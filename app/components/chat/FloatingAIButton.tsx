@@ -56,7 +56,7 @@ export default function FloatingAIButton({
       className="
         fixed
         cursor-pointer
-        bottom-64
+        bottom-56
         right-5
         z-[9999]
         flex

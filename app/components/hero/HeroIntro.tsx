@@ -11,7 +11,7 @@ export default function HeroIntro() {
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 4.2 }}
+          transition={{ duration: 0.8, delay: 3 }}
           className="mb-2 ml-1 max-w-[280px] text-[10px] leading-4 text-white sm:ml-2 sm:mb-3 sm:max-w-[360px] sm:text-[15px] sm:leading-5"
         >
           I build thoughtful digital experiences and full-stack web
@@ -23,7 +23,7 @@ export default function HeroIntro() {
           <motion.h1
             initial={{ y: "100%" }}
             animate={{ y: 0 }}
-            transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay:4.2 }}
+            transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay:3 }}
           
             className="whitespace-nowrap text-[clamp(3.5rem,8vw,7rem)] font-semibold uppercase leading-none tracking-[-0.07em] bg-gradient-to-b from-[#ffd9d9] from-56% to-[rgba(255,0,0,0)] bg-clip-text text-transparent"
           >
@@ -45,13 +45,13 @@ export default function HeroIntro() {
         }}
         transition={{
           // Entrance transition
-          scale: { type: "spring", stiffness: 200, damping: 15, delay: 4.2 },
+          scale: { type: "spring", stiffness: 200, damping: 15, delay: 3 },
           // Continuous loop transition
           y: {
             duration: 3,
             repeat: Infinity,
             ease: "easeInOut",
-            delay: 4.2, // Starts floating after the entrance
+            delay: 3, // Starts floating after the entrance
           },
         }}
         className="pointer-events-auto group relative flex w-fit cursor-pointer items-center gap-3 border border-white/20 bg-[#e53935] p-2 pr-3 shadow-[8px_8px_0_rgba(0,0,0,0.15)] transition-all duration-300 ease-out hover:-translate-y-2 hover:shadow-[12px_12px_0_rgba(0,0,0,0.2)] sm:gap-4 sm:p-3"

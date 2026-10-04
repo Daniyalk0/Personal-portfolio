@@ -16,17 +16,6 @@ export default function IntroLoader() {
   const content = useAnimation();
 
   useEffect(() => {
-    // Show the intro once per browser session.
-    // Remove this block if you want the intro on every refresh.
-    const alreadySeen = sessionStorage.getItem("daniyal-intro-seen");
-
-    if (alreadySeen) {
-      setVisible(false);
-      return;
-    }
-
-    sessionStorage.setItem("daniyal-intro-seen", "true");
-
     let current = 0;
 
     const interval = window.setInterval(() => {
@@ -41,14 +30,11 @@ export default function IntroLoader() {
     }, 45);
 
     const runAnimation = async () => {
-      // Give the first typography a moment to establish itself.
-      await new Promise((resolve) => setTimeout(resolve, 500));
-
       await content.start({
         opacity: 0,
         y: -35,
         transition: {
-          duration: 0.45,
+          duration: 0.3,
           ease: [0.76, 0, 0.24, 1],
         },
       });
@@ -57,7 +43,7 @@ export default function IntroLoader() {
         topCurtain.start({
           y: "-100%",
           transition: {
-            duration: 0.9,
+            duration: 0.8,
             ease: [0.76, 0, 0.24, 1],
           },
         }),
@@ -65,7 +51,7 @@ export default function IntroLoader() {
         bottomCurtain.start({
           y: "100%",
           transition: {
-            duration: 0.9,
+            duration: 0.8,
             ease: [0.76, 0, 0.24, 1],
           },
         }),
@@ -76,7 +62,7 @@ export default function IntroLoader() {
 
     const finishTimer = window.setTimeout(() => {
       runAnimation();
-    }, 2100);
+    }, 1450);
 
     return () => {
       window.clearInterval(interval);
