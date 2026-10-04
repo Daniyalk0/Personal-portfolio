@@ -1,109 +1,126 @@
-# 🚀 My Personal AI Powered Portfolio
+# 🚀 Daniyal — Personal Portfolio
 
-[![Next.js](https://img.shields.io/badge/Next.js-15-black?style=flat-square&logo=next.js)](https://nextjs.org/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=flat-square&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=flat-square&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
-[![Gemini Flash](https://img.shields.io/badge/AI-Gemini%20Flash-4285F4?style=flat-square&logo=google&logoColor=white)](https://aistudio.google.com/)
+An art-directed, interactive developer portfolio built with **Next.js**, featuring a 3D hero, smooth motion, responsive layouts, selected projects, and an AI-powered portfolio assistant.
 
-A high-performance, editorial-inspired portfolio built with **Next.js 15** (App Router). This project showcases my journey as a Full-Stack Developer, featuring smooth Framer Motion interactions and an intelligent AI assistant that knows everything about my professional background.
+## 🌐 Live
 
-## 🌐 Live Demo
+**[daniyal-devv.vercel.app](https://daniyal-devv.vercel.app)**
 
-**Check it out here:** [https://daniyal.devv.vercel.app](https://daniyal.devv.vercel.app)
+## ✨ Features
 
----
-
-## ✨ Key Features
-
-*   **🤖 AI Portfolio Assistant:** A custom chatbot powered by **Google Gemini Flash**. It uses a Markdown-based knowledge base to answer visitor queries in real-time.
-*   **⚡ Next.js 15 Optimized:** Leveraging the latest React 19 features, Server Components, and optimized hydration.
-*   **🎨 Editorial Design:** A clean, typography-focused aesthetic with seamless Dark/Light mode support.
-*   **📱 Fully Responsive:** Crafted for all screen sizes, from mobile devices to ultra-wide monitors.
-*   **🎬 Smooth Motion:** Integrated with `framer-motion` for meaningful transitions and micro-interactions.
-*   **📄 Dynamic Content:** Projects and experience are managed via Markdown/MDX for easy updates.
+* **🎨 Art-directed design** — Editorial-inspired visual system focused on typography, composition, and interaction.
+* **🧊 Interactive 3D Hero** — A real-time 3D experience built with Three.js and React Three Fiber.
+* **🤖 AI Portfolio Assistant** — Visitors can ask questions about my background, projects, skills, and experience.
+* **🎬 Motion & Interactions** — Smooth page transitions, scroll-based animations, reveals, and micro-interactions.
+* **📱 Responsive** — Designed and optimized for mobile, tablet, and desktop.
+* **🗂️ Project Showcase** — Detailed presentation of selected full-stack and frontend projects.
+* **⚡ Next.js App Router** — Built with the modern Next.js architecture and React Server Components.
 
 ---
 
-## 🤖 The AI Assistant (Technical Details)
+## 🤖 AI Portfolio Assistant
 
-The core of this portfolio is the **AI Assistant**. Unlike standard chatbots, this implementation uses a "RAG-lite" (Retrieval-Augmented Generation) approach:
+The portfolio includes an AI assistant designed specifically to answer questions about me and my work.
 
-1.  **Knowledge Base:** My CV and project details are stored in a structured `data/knowledge-base.md`.
-2.  **Context Injection:** When a user asks a question, the system reads this context and injects it into the LLM prompt.
-3.  **Streaming UI:** Responses are streamed back to the client word-by-word using the official Google GenAI SDK (ai.models.generateContentStream) and custom ReadableStream patterns for a fluid user experience.  
+The assistant uses a curated knowledge base containing information about my:
 
-4.  **Grounding:** The system is strictly instructed to only answer based on the provided bio to prevent hallucinations.
+* Background
+* Skills
+* Projects
+* Experience
+* Development workflow
+
+The knowledge is provided as context to the AI model so responses remain focused on information relevant to my portfolio rather than acting as a general-purpose chatbot.
 
 ---
 
 ## 🛠️ Tech Stack
 
-| Category           | Technology Used                                                                 |
-| ------------------ | ------------------------------------------------------------------------------- |
-| **Framework**      | Next.js 15 (App Router), React 19                                               |
-| **Language**       | TypeScript                                                                      |
-| **Styling**        | Tailwind CSS                                                                    |
-| **Animations**     | Framer Motion                                                                   |
-| **AI Infrastructure**| Google Gemini Flash (via Google AI Studio), React Markdown                                      |
-| **Content**        | Gray-matter (Frontmatter parsing), Markdown                                     |
+| Category       | Technologies                      |
+| -------------- | --------------------------------- |
+| **Framework**  | Next.js 16, React                 |
+| **Language**   | TypeScript                        |
+| **Styling**    | Tailwind CSS                      |
+| **Animation**  | Motion / Framer Motion            |
+| **3D**         | Three.js, React Three Fiber, Drei |
+| **AI**         | Google Gemini / Google GenAI SDK  |
+| **Database**   | PostgreSQL                        |
+| **ORM**        | Prisma                            |
+| **Content**    | Markdown / MDX                    |
+| **Deployment** | Vercel                            |
 
 ---
 
 ## 🚀 Getting Started
 
 ### 1. Clone the repository
+
 ```bash
 git clone https://github.com/Daniyalk0/Personal-portfolio.git
 cd Personal-portfolio
-
 ```
-### 2. Clone the repository
+
+### 2. Install dependencies
+
 ```bash
 npm install
-# or
+```
+
+Or with pnpm:
+
+```bash
 pnpm install
-
 ```
-### 3.Environment Variables
-```bash
+
+### 3. Configure environment variables
+
+Create a `.env.local` file in the project root:
+
+```env
 GEMINI_API_KEY=your_gemini_api_key_here
-
 ```
-### 4. Run the development server
+
+### 4. Start the development server
+
 ```bash
-npm run dev  
-Open http://localhost:3000 to see the result.
-
+npm run dev
 ```
+
+Open http://localhost:3000 in your browser.
+
+---
+
 ## 📁 Project Structure
 
 ```text
 ├── app/
 │   ├── api/
-│   │   └── chat/          # AI chat API route
-│   ├── components/        # Reusable UI components
+│   │   └── chat/              # AI assistant API
+│   ├── components/            # Reusable UI components
 │   │   ├── chatbot/
 │   │   ├── sections/
 │   │   └── ui/
-│   ├── content/           # Markdown knowledge base
+│   ├── content/               # Portfolio content / knowledge base
 │   │   ├── about.md
 │   │   └── projects/
-│   │       ├── greenova.md
-│   │       ├── writewise-ai.md
-│   │       └── salon-template.md
-│   ├── lib/               # AI logic & utility functions
+│   ├── lib/                   # Utilities and AI logic
 │   ├── layout.tsx
 │   └── page.tsx
-├── public/                # Static assets
+├── public/
+│   ├── images/                # Portfolio images
+│   └── models/                # 3D assets
 ├── package.json
 └── README.md
 ```
 
-## 📬 Contact & Socials
+---
 
-I'm always open to discussing new projects, collaborations, or opportunities.
+## 📬 Contact
 
-[![GitHub](https://img.shields.io/badge/GitHub-Daniyalk0-181717?style=for-the-badge&logo=github)](https://github.com/Daniyalk0)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Daniyal%20Khan-0A66C2?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/daniyal-k-648107263/)
-[![Email](https://img.shields.io/badge/Email-Contact-EA4335?style=for-the-badge&logo=gmail)](mailto:getdaniyalkhan@gmail.com)
-<!-- - **X (Twitter):** https://x.com/yourhandle -->
+I'm open to interesting projects, collaborations, and developer opportunities.
+
+**GitHub:** [github.com/Daniyalk0](https://github.com/Daniyalk0)
+
+**LinkedIn:** [linkedin.com/in/daniyal-k-648107263](https://www.linkedin.com/in/daniyal-k-648107263/)
+
+**Email:** [getdaniyalkhan@gmail.com](mailto:getdaniyalkhan@gmail.com)
