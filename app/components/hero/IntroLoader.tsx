@@ -30,11 +30,14 @@ export default function IntroLoader() {
     }, 45);
 
     const runAnimation = async () => {
+      // Give the first typography a moment to establish itself.
+      await new Promise((resolve) => setTimeout(resolve, 500));
+
       await content.start({
         opacity: 0,
         y: -35,
         transition: {
-          duration: 0.3,
+          duration: 0.45,
           ease: [0.76, 0, 0.24, 1],
         },
       });
@@ -43,7 +46,7 @@ export default function IntroLoader() {
         topCurtain.start({
           y: "-100%",
           transition: {
-            duration: 0.8,
+            duration: 0.9,
             ease: [0.76, 0, 0.24, 1],
           },
         }),
@@ -51,7 +54,7 @@ export default function IntroLoader() {
         bottomCurtain.start({
           y: "100%",
           transition: {
-            duration: 0.8,
+            duration: 0.9,
             ease: [0.76, 0, 0.24, 1],
           },
         }),
@@ -62,7 +65,7 @@ export default function IntroLoader() {
 
     const finishTimer = window.setTimeout(() => {
       runAnimation();
-    }, 1450);
+    }, 2100);
 
     return () => {
       window.clearInterval(interval);

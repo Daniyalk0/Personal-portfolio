@@ -18,7 +18,7 @@ function DesktopHeroName() {
       <motion.div
         initial={{ opacity: 0, y: -40 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1], delay:3.7 }}
+        transition={{ duration: 2, ease: [0.22, 1, 0.36, 1], delay:4.8 }}
       >
         <span
           className="
