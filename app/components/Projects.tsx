@@ -194,6 +194,11 @@ export function ProjectRow({ project }: { project: Project }) {
       "
             >
               {project.title}
+              {project.subtitle && (
+                <span className="ml-3 mb-1 inline-block align-bottom font-mono text-sm font-normal tracking-normal text-black/45 lg:text-base">
+                  {project.subtitle}
+                </span>
+              )}
             </motion.h3>
           </MaskedReveal>
 
